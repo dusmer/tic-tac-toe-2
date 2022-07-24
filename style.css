@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+  }
+
+html{
+    font-family: 'Roboto', sans-serif;
+}
+
+.container{
+    display:grid;
+    grid-template-rows: auto 5fr;
+}
+
+.header{
+    display:flex;
+    justify-content: center;
+    padding:30px;
+    background-color: rgba(228, 225, 225, 0.795);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+body{
+    display:flex;
+    flex-direction: column;
+    height:100vh;
+}
+.main{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding:40px;
+}
+.boardContainer{   
+    grid-template-rows: 150px 150px 150px;
+    grid-template-columns: 150px 150px 150px;
+    display:none;
+    
+
+}
+
+.symbol{
+    font-size:70px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#board0{
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    
+    
+    
+}
+#board1{
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+#board2{
+    border-bottom: 1px solid black;
+}
+#board3{
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+#board4{
+    border-right: 1px solid black;
+    border-bottom: 1px solid black; 
+}
+#board5{
+    border-bottom: 1px solid black;
+}
+#board6{
+    border-right: 1px solid black;
+    
+}
+#board7{
+    border-right: 1px solid black;
+    
+}
+#board8{
+    
+}
