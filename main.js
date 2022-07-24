@@ -7,6 +7,7 @@ const playerFactory = (name, symbol) => {
 
 const gameBoardModule = (() => {
     const gameBoard = ["","","","","","","","",""];
+    let openSpots = [];
     const setField = (symbol, index) => {
         gameBoard[index] = symbol;
     }
@@ -19,7 +20,23 @@ const gameBoardModule = (() => {
             gameBoard[x] = "";
         }
     }
-    return {setField, getField, reset };
+    const tie = () => {
+
+        return gameBoard.includes("");
+    }
+
+    const openSpot = () => {
+       openSpots = [];
+        gameBoard.map((currElement, index) => {
+            if (currElement == ""){
+                openSpots.push(index);
+            }
+            
+        })
+        return openSpots;
+    }
+
+    return {setField, getField, reset,tie, openSpot };
 })();
 
 
@@ -34,6 +51,9 @@ const gameController = (() => {
     const player1Name = document.querySelector("#playerName1");
     const player2Name = document.querySelector('#playerName2');
     const scoreBoard = document.querySelector(".scoreBoard");
+    const AI = document.querySelector('#AI');
+
+
 
 
 
@@ -42,6 +62,9 @@ const gameController = (() => {
         switch(current){
             case player1:{
                 currentPlayer = player2;
+                if (AI.checked == true && gameState == 1){
+                    AIturn();
+                }
                 break;
             }
             case player2:{
@@ -52,27 +75,48 @@ const gameController = (() => {
 
     }
 
+    function AIturn(){
+
+        availableSpots = gameBoardModule.openSpot();
+        const spot = availableSpots[Math.floor(Math.random()*availableSpots.length)];
+        gameBoardModule.setField(player2.symbol,spot);
+
+        updateBoard();
+        gameStatus();
+        switchPlayer(currentPlayer);
+
+
+    }
+
 
     const updateBoard = () => {
         for(x = 0; x < 9; x++){
             const square = document.querySelector(`#board${x}`);
             square.textContent = gameBoardModule.getField(x);
         }
+
     };
-    
+
     updateBoard();
 
     const gameStatus = () => {
+
+        const scoreContainer = document.querySelector(".scoreBoard");
         winCondition.forEach((item,index) =>{
+
+
             if (gameBoardModule.getField(item[0]) == gameBoardModule.getField(item[1]) && gameBoardModule.getField(item[0]) == gameBoardModule.getField(item[2]) && gameBoardModule.getField(item[0]) != ""){
-                const scoreContainer = document.querySelector(".scoreBoard");
+                console.log("should win");
                 scoreContainer.textContent = `${currentPlayer.name} wins!`;
                 gameState = 0;
                 
-            }else{
-
+            }else if(gameBoardModule.tie() == false && gameState == 1){
+                scoreContainer.textContent = "That's a dang ass tie!";
+                gameState = 0;
             }
+
         })
+
     }
 
     const winCondition = [
