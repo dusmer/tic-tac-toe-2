@@ -1,5 +1,5 @@
 # tic-tac-toe-2
-<h1>TOP: Tic Tac Toe/h1>
+<h1>TOP: Tic Tac Toe</h1>
 
 <p>Live demo at https://dusmer.github.io/tic-tac-toe-2/</p>
 <p><img src="https://dusmer.github.io/tic-tac-toe-2/screenshot.png" /></p>
